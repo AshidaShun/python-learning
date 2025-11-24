@@ -1,0 +1,17 @@
+# .pre-commit-config.yaml
+
+repos:
+  # 1. Ruffのフック (整形とリンティング)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.6  # pyproject.tomlのruffのバージョンに合わせる
+    hooks:
+      - id: ruff-format # 自動整形を実行
+      - id: ruff        # リンティングを実行
+        args: [--fix, --exit-non-zero-on-fix] # 自動修正と、修正が発生したらコミットを中断する設定
+
+  # 2. Mypyのフック (型検査)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.18.2 # pyproject.tomlのmypyのバージョンに合わせる
+    hooks:
+      - id: mypy
+        # arguments for mypy here
